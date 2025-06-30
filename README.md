@@ -11,7 +11,7 @@ Avaliar a capacidade do candidato em desenvolver e integrar um widget em uma pá
 Você deve entregar:
 
 1. Um arquivo JavaScript que será incluído em qualquer site para carregar um widget contendo um iFrame.
-2. Um projeto React utilizando o framework Vite com a página a ser carregada no widget.
+2. Um projeto React utilizando o framework Vite + TypeScript com a página a ser carregada no widget.
 3. As instruções de como executar e testar a solução.
 
 ---
