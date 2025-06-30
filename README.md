@@ -80,6 +80,14 @@ Você deverá criar uma aplicação que será exibida dentro do iFrame. Essa apl
 
 ---
 
+## 👾 Exemplos
+
+![Aviato example](imgs/01.gif)
+![Classimax example](imgs/02.gif)
+![Shop example](imgs/03.gif)
+
+---
+
 ## 📦 Entrega
 
 - Basta fazer um pull-request nesse repositório contendo seu nome completo no título do mesmo.
