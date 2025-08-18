@@ -132,6 +132,8 @@ Oba! Terminou tudinho? Agora faça o seguinte:
 
 1. Verifique se o código está na branch **main/master** do repositório que você criou.  
 2. Dê acesso aos usuários **`sandercamargo`** e **`jgabrielfes-bonifiq`** no GitHub.
+3. Preencha o formulário abaixo:
+[https://forms.gle/Ytp6pi3gUZBmadcf7](https://forms.gle/Ytp6pi3gUZBmadcf7)
 
 A gente te responde em breve, ok?
 
