@@ -1,5 +1,43 @@
 # 🧪 Prova Prática – Desenvolvedor Front-End
 
+## 🚀 Para começar
+
+O primeiro passo é **criar uma cópia deste repositório na sua conta particular do GitHub**.  
+⚠️ **Atenção:** fazer uma cópia é diferente de realizar um **clone** ou um **fork**. Não utilize a opção *Fork*.
+
+### Como criar a cópia do repositório
+
+1. Acesse [https://github.com/new](https://github.com/new) (página de criação de repositório no GitHub).
+2. Defina o nome do repositório na sua conta como `prova-frontend-bonifiq`.
+3. Escolha se deseja deixar o repositório privado.
+4. Após criar o repositório, clone este repositório da prova na sua máquina:
+   ```bash
+   git clone <url-deste-repositorio>
+   ```
+5. Entre na pasta clonada:
+   ```bash
+   cd <nome-da-pasta>
+   ```
+6. Remova o vínculo com o repositório original:
+   ```bash
+   git remote remove origin
+   ```
+7. Adicione o repositório que você criou na sua conta como origem:
+   ```bash
+   git remote add origin <url-do-seu-repositorio>
+   ```
+8. Envie os arquivos para o seu repositório:
+   ```bash
+   git push -u origin main
+   ```
+   (ou `master`, dependendo do nome da sua branch principal)
+
+📌 **Importante:**  
+- O código deve estar na branch **main** ou **master** do seu repositório.  
+- **NÃO** faça *Fork* deste repositório.  
+
+---
+
 ## 🧠 Objetivo
 
 Avaliar a capacidade do candidato em desenvolver e integrar um widget em uma página web, consumindo dados de uma API e utilizando tecnologias modernas como React.
@@ -90,7 +128,12 @@ Você deverá criar uma aplicação que será exibida dentro do iFrame. Essa apl
 
 ## 📦 Entrega
 
-- Basta fazer um pull-request nesse repositório contendo seu nome completo no título do mesmo.
+Oba! Terminou tudinho? Agora faça o seguinte:
+
+1. Verifique se o código está na branch **main/master** do repositório que você criou.  
+2. Dê acesso aos usuários **`sandercamargo`** e **`jgabrielfes-bonifiq`** no GitHub.
+
+A gente te responde em breve, ok?
 
 ---
 
