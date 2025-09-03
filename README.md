@@ -130,8 +130,8 @@ Você deverá criar uma aplicação que será exibida dentro do iFrame. Essa apl
 
 Oba! Terminou tudinho? Agora faça o seguinte:
 
-1. Verifique se o código está na branch **main/master** do repositório que você criou.  
-2. Dê acesso aos usuários **`sandercamargo`** e **`jgabrielfes-bonifiq`** no GitHub.
+1. Confirme que o código está na branch **main/master** do repositório que você criou.
+2. Configure o repositório no GitHub como **público** para que possamos acessar sua solução.
 3. Preencha o formulário abaixo:
 [https://forms.gle/Ytp6pi3gUZBmadcf7](https://forms.gle/Ytp6pi3gUZBmadcf7)
 
