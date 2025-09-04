@@ -1,13 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Prova Front-end Bonifiq</title>
+    <meta charset="utf-8" />
+    <title>Prova Front-end BonifiQ</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+        color: #1e293b;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        text-align: center;
+        caret-color: transparent;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+        color: #2563eb;
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin-bottom: 2rem;
+        color: #475569;
+      }
+      footer {
+        padding: 1rem;
+        background: #e2e8f0;
+        font-size: 0.9rem;
+        color: #475569;
+      }
+    </style>
   </head>
   <body>
-    <h1>Prova Front-end Bonifiq</h1>
-    <p>Bem-vindo à prova de front-end da Bonifiq!</p>
+    <main>
+      <h1>Prova Front-end BonifiQ</h1>
+      <p>
+        Bem-vindo à prova de front-end da BonifiQ! <br />
+        Clique no botão azul no canto inferior para abrir o widget.
+      </p>
+    </main>
+
+    <footer>© 2025 BonifiQ — Página de Teste do Widget</footer>
+
     <script src="./widget.js"></script>
   </body>
 </html>
