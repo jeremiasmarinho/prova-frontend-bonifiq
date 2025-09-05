@@ -17,9 +17,6 @@
   // estilos básicos (botão + iframe)
   const style = document.createElement("style");
   style.textContent = `
-   w-[320px] h-[600px]
-
-  }
   .bqw-overlay {
     position: fixed; inset: 0; z-index: 2147483646;
     backdrop-filter: blur(2px);
@@ -52,7 +49,13 @@
 
   .bqw-iframe {
     position: fixed; right: 18px; bottom: 88px; z-index: 2147483647;
-    width: 320px; height: 600px; max-width: 92vw; max-height: 82vh; // tamanho exigido
+    
+    /* --- ALTERAÇÕES AQUI --- */
+    width: 320px;
+    aspect-ratio: 320 / 596; /* Proporção baseada no seu App.tsx */
+    max-width: 92vw; 
+    max-height: 82vh;
+    
     border: 1px solid rgba(15,23,42,.08); border-radius: 18px;
     background: transparent;
     box-shadow:
@@ -77,7 +80,11 @@
   }
 
   @media (max-width: 480px) {
-    .bqw-iframe { width: 92vw; height: 72vh; right: 4vw; bottom: 90px; }
+    .bqw-iframe { 
+      /* Apenas ajustamos a posição, o tamanho será controlado pelas regras acima */
+      right: 4vw; 
+      bottom: 90px; 
+    }
     .bqw-btn { right: 4vw; bottom: 16px; }
   }
 `;
