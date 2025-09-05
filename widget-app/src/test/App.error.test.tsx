@@ -1,26 +1,22 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { act } from "react"; // <-- adicione
+import { describe, it, expect, vi } from "vitest";
+import { render, screen } from "@testing-library/react";
 import App from "../App";
-import { dispatchUserId, mockParentPostMessage, mockFetchError } from "./utils";
+import { dispatchUserId } from "./helpers";
+
+// como o App converte para mensagem genérica "Não foi possível carregar os dados."
+vi.mock("../services/api", () => ({
+  api: {
+    getUser: vi.fn().mockRejectedValue(new Error("Erro de rede")),
+    getUserPosts: vi.fn().mockRejectedValue(new Error("Erro de rede")),
+  },
+}));
 
 describe("App (erro)", () => {
-  beforeEach(() => {
-    vi.restoreAllMocks();
-    mockParentPostMessage();
-  });
-
-  test("exibe erro se uma das requisições falhar", async () => {
-    mockFetchError();
-
+  it("exibe erro se uma das requisições falhar", async () => {
     render(<App />);
-    await act(async () => {
-      dispatchUserId(99); // <-- envolve em act
-    });
+    dispatchUserId(1);
 
-    await waitFor(() => {
-      expect(
-        screen.getByText(/Não foi possível carregar os dados|Erro/i)
-      ).toBeInTheDocument();
-    });
+    const alert = await screen.findByRole("alert");
+    expect(alert).toHaveTextContent(/não foi possível carregar os dados/i);
   });
 });

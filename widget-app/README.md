@@ -1,69 +1,141 @@
-# React + TypeScript + Vite
+📦 Widget Bonifiq
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Widget em React + TypeScript que roda dentro de um iFrame.
+Ele consome a API pública JSONPlaceholder
+para exibir informações de um usuário e seus posts.
+A comunicação com a página host é feita via window.postMessage, de onde o widget obtém o window.loggedUserId.
 
-Currently, two official plugins are available:
+🚀 Funcionalidades
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Lê o userId do host via postMessage.
 
-## Expanding the ESLint configuration
+Busca os dados do usuário em:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+https://jsonplaceholder.typicode.com/users/:id
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Busca os posts do usuário em:
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+https://jsonplaceholder.typicode.com/posts?userId=:id
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Exibe:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Nome e email do usuário.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Lista de posts (título + corpo).
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Possui botão flutuante para abrir/fechar o widget.
+
+Responsivo (limite fixo 320x600px, compatível com desktop e mobile).
+
+Testes cobrindo cenários:
+
+✅ Sucesso (usuário e posts carregados).
+
+❌ Erro (falha nas requisições).
+
+⚠️ Sem userId (instrução exibida).
+
+🛠️ Tecnologias
+
+React 19
+
+TypeScript
+
+Vite
+
+TailwindCSS
+
+Vitest
+
+Testing Library
+
+📂 Estrutura de Pastas
+src/
+├── components/ # Componentes reutilizáveis
+│ ├── CloseButton.tsx
+│ ├── ErrorAlert.tsx
+│ ├── Loader.tsx
+│ ├── PostsList.tsx
+│ └── UserInfo.tsx
+│
+├── constants/ # Valores fixos da aplicação
+│ └── index.ts
+│
+├── hooks/ # Hooks customizados
+│ └── useUserId.ts
+│
+├── services/ # Serviços externos (API)
+│ └── api.ts
+│
+├── test/ # Testes unitários
+│ ├── App.error.test.tsx
+│ ├── App.noUserId.test.tsx
+│ ├── App.success.test.tsx
+│ ├── helpers.ts
+│ └── setup.ts
+│
+├── App.tsx # Composição principal do widget
+├── App.css
+├── index.css
+├── main.tsx
+├── types.ts # Tipos (User, Post)
+└── vite-env.d.ts
+
+⚡ Como rodar o projeto
+Instalar dependências
+npm install
+
+Rodar localmente
+npm run dev
+
+Acesse em: http://localhost:5173
+
+Rodar testes
+npm run test
+
+🔗 Uso no Host
+Local
+
+Na página host, adicione o script widget.js com a URL local da app:
+
+<script src="./widget.js" data-app-url="http://localhost:5173"></script>
+<script>
+  // Exemplo: ID fornecido pelo host
+  window.loggedUserId = 1;
+</script>
+
+Produção (via CDN ou build)
+
+Após rodar o build:
+
+npm run build
+
+Será gerada a pasta dist/ com os arquivos finais.
+Você pode publicar em um servidor ou em uma CDN (como Vercel, Netlify ou AWS S3).
+
+Exemplo de uso em produção:
+
+<!-- URL final do script publicado (exemplo via CDN ou servidor próprio) -->
+<script src="https://meu-cdn.com/widget-bonifiq/widget.js" data-app-url="https://meu-cdn.com/widget-bonifiq/"></script>
+<script>
+  // Host define o ID do usuário logado
+  window.loggedUserId = 1;
+</script>
+
+Esse script cuidará de:
+
+Injetar o botão flutuante.
+
+Criar o iFrame apontando para o widget.
+
+Enviar o loggedUserId automaticamente via postMessage.
+
+🎨 Decisões de Design
+
+O widget tem tamanho fixo (320x600px) para evitar ocupar espaço demais.
+
+Apenas o conteúdo interno (<main>) pode rolar, evitando scroll externo.
+
+Comunicação entre host e widget via postMessage, garantindo compatibilidade entre domínios diferentes.
+
+Arquitetura organizada em components, hooks, services, constants e test para facilitar manutenção e evolução.

@@ -1,28 +1,25 @@
 import { useEffect, useState } from "react";
-
-// define os formatos de mensagem que esperamos do host
-type ResponseUserIdMsg = {
-  type: "RESPONSE_USER_ID";
-  payload: { userId: number | null };
-};
-
-// fallback genérico para qualquer outra mensagem
-type OtherMsg = {
-  type: string;
-  [key: string]: unknown;
-};
-
-type WidgetMessage = ResponseUserIdMsg | OtherMsg;
+import { WIDGET_MESSAGES, type WidgetMessage } from "../constants";
 
 export function useUserId() {
   const [userId, setUserId] = useState<number | null>(null);
 
   useEffect(() => {
     // pede o ID pro host (widget.js)
-    window.parent.postMessage({ type: "REQUEST_USER_ID" }, "*");
+    window.parent.postMessage({ type: WIDGET_MESSAGES.REQUEST_USER_ID }, "*");
 
-    const onMessage = (event: MessageEvent<WidgetMessage>) => {
-      if (event.data.type === "RESPONSE_USER_ID") {
+    const onMessage = (
+      event: MessageEvent<
+        WidgetMessage<
+          typeof WIDGET_MESSAGES.RESPONSE_USER_ID,
+          { userId: number | null }
+        >
+      >
+    ) => {
+      if (
+        event.data.type === WIDGET_MESSAGES.RESPONSE_USER_ID &&
+        event.data.payload
+      ) {
         const id = event.data.payload.userId;
         setUserId(Number.isFinite(id) ? id : null);
       }

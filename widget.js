@@ -17,6 +17,9 @@
   // estilos básicos (botão + iframe)
   const style = document.createElement("style");
   style.textContent = `
+   w-[320px] h-[600px]
+
+  }
   .bqw-overlay {
     position: fixed; inset: 0; z-index: 2147483646;
     backdrop-filter: blur(2px);
@@ -49,9 +52,9 @@
 
   .bqw-iframe {
     position: fixed; right: 18px; bottom: 88px; z-index: 2147483647;
-    width: 320px; height: 600px; max-width: 92vw; max-height: 82vh;
+    width: 320px; height: 600px; max-width: 92vw; max-height: 82vh; // tamanho exigido
     border: 1px solid rgba(15,23,42,.08); border-radius: 18px;
-    background: transparent; overflow: hidden;
+    background: transparent;
     box-shadow:
       0 26px 56px rgba(2,6,23,.32),
       0 10px 26px rgba(2,6,23,.18);
@@ -121,6 +124,7 @@
       overlayEl.classList.remove("on");
       return;
     }
+
     // animação de saída
     iframeEl.classList.add("leave");
     overlayEl.classList.remove("on");

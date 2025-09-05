@@ -3,6 +3,8 @@ import type { Post } from "../types";
 export function PostsList({ posts }: { posts: Post[] }) {
   return (
     <section
+      role="region"
+      aria-label="Posts"
       className="p-3 rounded-xl border bg-white shadow-sm transition hover:shadow-md
                         dark:bg-slate-900/60 dark:border-slate-700/50"
     >

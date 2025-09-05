@@ -1,20 +1,27 @@
-// src/test/App.noUserId.test.tsx
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
 import App from "../App";
-import { mockParentPostMessage } from "./utils";
+
+// mocka o serviço para garantir que NÃO é chamado sem userId
+vi.mock("../services/api", () => ({
+  api: {
+    getUser: vi.fn(),
+    getUserPosts: vi.fn(),
+  },
+}));
 
 describe("App (sem userId)", () => {
-  beforeEach(() => {
-    vi.restoreAllMocks();
-    mockParentPostMessage();
-  });
-
-  test("não chama fetch e mostra instrução quando não existe userId", () => {
-    const fetchSpy = vi.spyOn(globalThis, "fetch");
+  it("não chama API e mostra instrução quando não existe userId", async () => {
     render(<App />);
 
-    // mais simples: valida que o <code> com o texto está presente
-    expect(screen.getByText(/window\.loggedUserId/i)).toBeInTheDocument();
-    expect(fetchSpy).not.toHaveBeenCalled();
+    // mensagem do App quando não há userId
+    const p = await screen.findByTestId("no-user");
+    expect(p.textContent?.trim()).toBe(
+      "Defina window.loggedUserId na página principal."
+    );
+
+    const { api } = await import("../services/api");
+    expect(api.getUser).not.toHaveBeenCalled();
+    expect(api.getUserPosts).not.toHaveBeenCalled();
   });
 });

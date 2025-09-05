@@ -1,5 +1,8 @@
+import { WIDGET_MESSAGES } from "../constants";
+
 export function CloseButton() {
-  const fechar = () => window.parent.postMessage({ type: "WIDGET_CLOSE" }, "*");
+  const fechar = () =>
+    window.parent.postMessage({ type: WIDGET_MESSAGES.WIDGET_CLOSE }, "*");
 
   return (
     <button
