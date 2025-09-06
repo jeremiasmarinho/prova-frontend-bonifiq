@@ -7,11 +7,19 @@ export function CloseButton() {
   return (
     <button
       onClick={fechar}
-      className="px-3 py-2 rounded-lg text-white bg-rose-600 hover:bg-rose-700 active:bg-rose-800
-                 shadow-md hover:shadow-lg transition focus:outline-none focus:ring-2
-                 focus:ring-rose-300 text-sm"
+      className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
     >
-      Fechar
+      <svg 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        className="w-5 h-5"
+        strokeWidth="2" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+      >
+        <path d="M18 6L6 18M6 6l12 12"/>
+      </svg>
     </button>
   );
 }

@@ -61,31 +61,19 @@ export default function App() {
   return (
     <div
       className="
-        w-[320px] h-[596px] max-w-full overflow-hidden
-        flex flex-col rounded-2xl shadow-2xl
-        bg-gradient-to-b from-slate-50 to-white dark:from-slate-900 dark:to-slate-950
-        text-slate-900 dark:text-slate-100
+        w-[320px] h-[600px] max-w-full overflow-hidden
+        flex flex-col
+        bg-[#1e1e2d] text-white
       "
     >
-      {/* Header (fixo, sem consumir a altura rolável) */}
-      <header
-        className="
-          flex-shrink-0 px-4 py-3 border-b border-slate-200/60
-          bg-white/80 backdrop-blur rounded-t-2xl
-          dark:border-slate-700/50 dark:bg-slate-900/70
-        "
-      >
-        <h1 className="text-lg font-semibold text-blue-600 dark:text-blue-400 tracking-tight">
-          Widget Bonifiq
-        </h1>
+      {/* Header */}
+      <header className="flex-shrink-0 px-4 py-3 flex justify-between items-center border-b border-[#2a2a3b]">
+        <h1 className="text-lg font-medium">Widget Bonifiq</h1>
+        <CloseButton />
       </header>
 
       {/* Conteúdo rolável interno */}
-      <main
-        className="
-          flex-1 min-h-0 overflow-y-auto p-4 space-y-4
-          [scrollbar-width:thin] [scrollbar-color:theme(colors.slate.400)_transparent]
-        "
+      <main className="flex-1 min-h-0 overflow-y-auto px-4 py-2 space-y-3"
       >
         {!userId && (
           <p
@@ -105,19 +93,6 @@ export default function App() {
 
         {posts.length > 0 && <PostsList posts={posts} />}
       </main>
-
-      {/* Footer (fixo) */}
-      <footer
-        className="
-          flex-shrink-0 px-4 py-3 border-t border-slate-200/60
-          bg-white/80 backdrop-blur rounded-b-2xl
-          dark:border-slate-700/50 dark:bg-slate-900/70
-        "
-      >
-        <div className="flex justify-end">
-          <CloseButton />
-        </div>
-      </footer>
     </div>
   );
 }
