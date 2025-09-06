@@ -75,32 +75,6 @@
       background: #1e1e2d;
     }
 
-    .bqw-close {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: none; /* Escondendo o botão de fechar do widget.js */
-      align-items: center;
-      justify-content: center;
-      color: #6B7280;
-      transition: color 0.2s ease;
-      z-index: 999999;
-    }
-
-    .bqw-close:hover {
-      color: #9CA3AF;
-    }
-
-    .bqw-close svg {
-      width: 16px;
-      height: 16px;
-    }
     
     /* Estilo do scrollbar */
     .bqw-wrapper ::-webkit-scrollbar {
@@ -163,19 +137,8 @@
     iframe.className = "bqw-iframe";
     iframe.src = APP_URL;
 
-    const closeButton = document.createElement("button");
-    closeButton.className = "bqw-close";
-    closeButton.innerHTML = `
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M18 6L6 18M6 6l12 12"/>
-      </svg>
-    `;
-
     wrapper.appendChild(iframe);
-    wrapper.appendChild(closeButton);
     document.body.appendChild(wrapper);
-
-    closeButton.addEventListener("click", closeWidget);
     
     iframeEl = iframe;
     return wrapper;
@@ -210,6 +173,8 @@
 
   // comunicação com o iframe
   window.addEventListener("message", (event) => {
+    console.log("Received message:", event.data); // Debug log
+    
     if (event.data.type === "REQUEST_USER_ID") {
       event.source?.postMessage(
         {
@@ -221,6 +186,7 @@
     }
 
     if (event.data.type === "WIDGET_CLOSE") {
+      console.log("Closing widget..."); // Debug log
       closeWidget();
     }
   });

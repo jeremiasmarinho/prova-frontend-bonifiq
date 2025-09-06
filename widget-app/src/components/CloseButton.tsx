@@ -1,13 +1,19 @@
 import { WIDGET_MESSAGES } from "../constants";
 
 export function CloseButton() {
-  const fechar = () =>
-    window.parent.postMessage({ type: WIDGET_MESSAGES.WIDGET_CLOSE }, "*");
+  const fechar = () => {
+    // Certifica-se que a mensagem está sendo enviada para o pai correto
+    if (window.parent !== window) {
+      window.parent.postMessage({ type: WIDGET_MESSAGES.WIDGET_CLOSE }, "*");
+    } else {
+      console.error("Widget não está em um iframe");
+    }
+  };
 
   return (
     <button
       onClick={fechar}
-      className="w-6 h-6 flex items-center justify-center text-gray-400 hover:text-white transition-colors"
+      className="w-10 h-10 flex items-center justify-center text-gray-400 hover:text-white transition-colors p-2 -m-2"
     >
       <svg 
         viewBox="0 0 24 24" 
