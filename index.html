@@ -60,10 +60,16 @@
     </main>
 
     <footer>© 2025 BonifiQ — Página de Teste do Widget</footer>
+    <script src="./config.js"></script>
     <script>
       // defina o ID do usuário logado
       window.loggedUserId = 2;
     </script>
-    <script src="./widget.js" data-app-url="http://localhost:5173"></script>
+    <script src="./widget.js" data-app-url=""></script>
+    <script>
+      // Configurar a URL do widget dinamicamente
+      const widgetScript = document.querySelector('script[src="./widget.js"]');
+      widgetScript.setAttribute("data-app-url", window.CONFIG.widgetUrl);
+    </script>
   </body>
 </html>
